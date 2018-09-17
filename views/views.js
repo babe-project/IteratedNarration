@@ -147,9 +147,6 @@ var main = {
             // if database was accessible (i.e., non-empty)
             if (state == 'success') {
 
-                console.log("retrieved_data");
-                console.log(retrieved_data);
-
                 loadT_main = endingTimeMain-startingTimeMain;
 
                 // database is structured in one array for each participant that yields one object for each trial
@@ -200,9 +197,6 @@ var main = {
                 // add new seed to chain_ends to enable the creation of new chains even when others are still open
                 // always add one initial chain
                 chain_ends.push(initiate_chain());
-
-                console.log("chain_ends");
-                console.log(chain_ends);
                 
                 // choose chain_end that will be continued with this participant
                 var shuffled = _.shuffle(chain_ends);
@@ -227,7 +221,6 @@ var main = {
                         found_chainend = true;
                         story_text = exp.trial_info.main_trials[CT].text;
                         // if two people start at the same time, both can still be used, but system would fail if they get the same number
-                        // chain = chain_ends.length;
                         chain = make_chainid();
                         generation = 1;
                     }
@@ -252,8 +245,6 @@ var main = {
                 button2:           "Done!"
             }));
 
-            // $('#start_repro').focus();
-
             // update the progress bar based on how many trials there are in this round
             var filled = exp.currentTrialInViewCounter * (180 / exp.views_seq[exp.currentViewCounter].trials);
             $('#filled').css('width', filled);
@@ -267,7 +258,6 @@ var main = {
                 hide("start_repro");
                 show("reproduction");
                 show("next","block");
-                // $('#next').focus(); // you want to comment this out before deploying this experiment
             }); 
 
 			// event listener for buttons; when an input is selected, the response
@@ -423,10 +413,6 @@ var thanks = {
                         // if ((exp.trial_data[1]["chain"] == current_trial["chain"]) & (exp.trial_data[1]["generation"] == current_trial["generation"])) {
                         //     exp.trial_data[1]["deadend"] = true;
                         // }
-                        /* // third trial
-                        if ((exp.trial_data[2]["chain"] == current_trial["chain"]) & (exp.trial_data[2]["generation"] == current_trial["generation"])) {
-                            exp.trial_data[2]["deadend"] = true;
-                        }*/
                     }
                 }
 
