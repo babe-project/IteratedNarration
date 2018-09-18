@@ -6,7 +6,7 @@ exp.customize = function() {
     this.global_data.startTime = Date.now();
     this.global_data.browser = BrowserDetect.browser;
     this.global_data.os = BrowserDetect.OS;
-	
+
     // specify view order
     this.views_seq = [intro, 
 					 instructions,

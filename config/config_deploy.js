@@ -5,7 +5,7 @@ var config_deploy = {
     // needed to recover data from server app
    "author": "ЕК",
     // needed to recover data from server app
-   "experiment_id": "IteratedNarrationTemplate", 
+   "experiment_id": "IteratedNarrationTemplateDemo", 
    "description": "This is the template for iterated narration experiments using the _babe framework. This template is based on Bartlett's storytelling experiments in 1932.",
 
     // set deployment method; use one of:

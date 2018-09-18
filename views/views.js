@@ -56,7 +56,7 @@ var instructions = {
 
 var main = {
 	
-	trials : 1,
+	trials : 2,
 	
     render : function(CT) {
 
@@ -78,7 +78,7 @@ var main = {
 		
 		$.ajax({
 				type: 'GET',
-				url: "https://babe-backend.herokuapp.com/api/retrieve_experiment/13",
+				url: "https://babe-backend.herokuapp.com/api/retrieve_experiment/20",
 				crossDomain: true,
 				success: function (responseData, textStatus, jqXHR) {
                     retrieved_data = responseData;
@@ -350,7 +350,7 @@ var thanks = {
         // check, if someone submitted this exact coninuation in the meantime
         $.ajax({
                 type: 'GET',
-                url: "https://babe-backend.herokuapp.com/api/retrieve_experiment/13",
+                url: "https://babe-backend.herokuapp.com/api/retrieve_experiment/20",
                 crossDomain: true,
                 success: function (responseData, textStatus, jqXHR) {
                     retrieved_data2 = responseData;
@@ -389,7 +389,7 @@ var thanks = {
                 $('main').html(Mustache.render(viewTemplate, {}));
             } else {
                 console.log('no such config_deploy.deployMethod');
-            }
+            };
 
             // if the database is still empty (or can't be called for other reasons), just set loading time to NA and submit
             if (state == "error") {
@@ -404,18 +404,15 @@ var thanks = {
                     for (var trial=0; trial<retrieved_data2[participant].length; trial++){
 
                         var current_trial = retrieved_data2[participant][trial];
+                        var number_of_trials = 1;
 
-                        // first trial
-                        if ((exp.trial_data[0]["chain"] == current_trial["chain"]) & (exp.trial_data[0]["generation"] == current_trial["generation"])) {
-                            exp.trial_data[0]["deadend"] = true;
-                        }
-                        // second trial
-                        // if ((exp.trial_data[1]["chain"] == current_trial["chain"]) & (exp.trial_data[1]["generation"] == current_trial["generation"])) {
-                        //     exp.trial_data[1]["deadend"] = true;
-                        // }
-                    }
-                }
-
+                        for (var trial=0; trial<main.trials; trial++){
+                            if ((exp.trial_data[trial]["chain"] == current_trial["chain"]) & (exp.trial_data[trial]["generation"] == current_trial["generation"])) {
+                                exp.trial_data[trial]["deadend"] = true;
+                            };
+                        };
+                    };
+                };
             };
 
             console.log("exp.trial_data");
